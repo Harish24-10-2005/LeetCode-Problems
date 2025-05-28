@@ -1,43 +1,41 @@
 class Solution {
     private:
-    int time = 0;
-    void findb(int node,int p,vector<int>&vis,vector<int>&t,vector<int>&l,vector<vector<int>>&adj,vector<vector<int>>&b)
+    int t = 1;
+    void dfs(int node,int p,vector<int>&tin,vector<int>&low,vector<int>&vis,vector<vector<int>>&adj,vector<vector<int>>&res)
     {
         vis[node] = 1;
-        t[node] = l[node] = time;
-        time++;
+        tin[node] = low[node] = t++;
         for(int i:adj[node])
         {
             if(i == p) continue;
-            if(vis[i]!=1)
+            if(vis[i] != 1)
             {
-                findb(i,node,vis,t,l,adj,b);
-                l[node] = min(l[i],l[node]);
-                if(l[i] > t[node])
+                dfs(i,node,tin,low,vis,adj,res);
+                low[node] = min(low[node],low[i]);
+                if(low[i] > tin[node])
                 {
-                    b.push_back({node,i});
+                    res.push_back({node,i});
                 }
             }
             else
             {
-                l[node] = min(l[i],l[node]);
+                low[node] = min(low[node],low[i]);
             }
         }
     }
 public:
     vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
-        vector<vector<int>>b;
         vector<vector<int>>adj(n);
-
-        for(int i=0;i<connections.size();i++)
+        for(auto a:connections)
         {
-            adj[connections[i][0]].push_back(connections[i][1]);
-            adj[connections[i][1]].push_back(connections[i][0]);
+            adj[a[0]].push_back(a[1]);
+            adj[a[1]].push_back(a[0]);
         }
-
-        vector<int>t(n),l(n);
+        vector<int>tin(n);
+        vector<int>low(n);
+        vector<vector<int>>res;
         vector<int>vis(n,0);
-        findb(0,-1,vis,t,l,adj,b);
-        return b;
+        dfs(0,-1,tin,low,vis,adj,res);
+        return res;
     }
 };
