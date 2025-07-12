@@ -19,9 +19,16 @@ class Solution {
         return dp[i][buy] = ans;
     }
 public:
-    int maxProfit(vector<int>& prices, int fee) {
-        int n = prices.size();
-        vector<vector<int>>dp(n,vector<int>(2,-1));
-        return rec(0,1,fee,n,prices,dp);
+    int maxProfit(vector<int>& p, int fee) {
+        int n = p.size();
+        vector<vector<int>>dp(n,vector<int>(2,0));
+        dp[0][0] = 0;       
+        dp[0][1] = -p[0];
+        for(int i =1;i<n;i++)
+        {
+            dp[i][1] = max(-p[i] + dp[i-1][0],dp[i-1][1]);
+            dp[i][0] = max(p[i] - fee + dp[i-1][1],dp[i-1][0]);
+        }
+        return max(dp[n-1][0],dp[n-1][1]);
     }
 };
