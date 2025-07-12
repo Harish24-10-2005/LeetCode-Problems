@@ -15,7 +15,7 @@ class Solution {
         }   
         else
         {
-            ans = max(p[i] + rec(i+1,1,k--,n,p,dp),rec(i+1,0,k,n,p,dp));
+            ans = max(p[i] + rec(i+1,1,k-1,n,p,dp),rec(i+1,0,k,n,p,dp));
         }
         return dp[i][buy][k] = ans;
     }
