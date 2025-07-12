@@ -22,13 +22,13 @@ public:
     int maxProfit(vector<int>& p, int fee) {
         int n = p.size();
         vector<vector<int>>dp(n,vector<int>(2,0));
-        dp[0][0] = 0;       
-        dp[0][1] = -p[0];
+        int nt = 0;       
+        int t = -p[0];
         for(int i =1;i<n;i++)
         {
-            dp[i][1] = max(-p[i] + dp[i-1][0],dp[i-1][1]);
-            dp[i][0] = max(p[i] - fee + dp[i-1][1],dp[i-1][0]);
+            t = max(-p[i] + nt,t);
+            nt = max(p[i] - fee +t,nt);
         }
-        return max(dp[n-1][0],dp[n-1][1]);
+        return max(nt,t);
     }
 };
