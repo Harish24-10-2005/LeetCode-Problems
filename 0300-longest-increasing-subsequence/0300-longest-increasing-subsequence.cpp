@@ -1,18 +1,22 @@
 class Solution {
-private:
-    int rec(int i,int n,int pre,vector<int>&arr,vector<vector<int>>&dp)
-    {
-        if(i == n) return 0;
-        if(dp[i][pre+1] != -1) return dp[i][pre+1];
-        int t = 0;
-        if(pre ==-1 || arr[i] > arr[pre]) t =1 + rec(i+1,n,i,arr,dp);
-        int nt = rec(i+1,n,pre,arr,dp);
-        return dp[i][pre+1] = max(t,nt);
-    }
 public:
     int lengthOfLIS(vector<int>& nums) {
-        int n = nums.size();
-        vector<vector<int>>dp(n+1,vector<int>(n+2,-1));
-        return rec(0,n,-1,nums,dp);
+        int ans = 1;
+        vector<int>a;
+        a.push_back(nums[0]);
+        for(int i=1;i<nums.size();i++)
+        {
+            if(nums[i]>a.back())
+            {
+                a.push_back(nums[i]);
+                ans++;
+            }else if(nums[i]<a.back())
+            {
+                auto l = lower_bound(a.begin(),a.end(),nums[i]);
+                int idx = l - a.begin();
+                a[idx] = nums[i];  
+            }
+        }
+        return ans;
     }
 };
