@@ -10,15 +10,16 @@
  * };
  */
 class Solution {
-public:
-    bool isValidBST(TreeNode*root,long long minVal, long long maxVal)
+    private:
+    bool dfs(TreeNode* root,long long maxx,long long minn)
     {
         if(!root) return true;
-        if(root->val <= minVal || root->val >=maxVal) return false;
+        if(root->val <= minn || root->val >= maxx) return false;
 
-        return isValidBST(root->left,minVal,root->val) && isValidBST(root->right,root->val,maxVal);
+        return dfs(root->left,root->val,minn) && dfs(root->right,maxx,root->val);
     }
+public:
     bool isValidBST(TreeNode* root) {
-        return isValidBST(root,LLONG_MIN,LLONG_MAX);
+        return dfs(root,LLONG_MAX,LLONG_MIN);
     }
 };
