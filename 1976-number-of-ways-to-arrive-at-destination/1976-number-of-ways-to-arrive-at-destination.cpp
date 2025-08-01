@@ -1,47 +1,47 @@
 class Solution {
 public:
+    int MOD = 1e9+7;
     int countPaths(int n, vector<vector<int>>& roads) {
-        int MOD = 1e9 + 7;
-        priority_queue<pair<long long,int>, vector<pair<long long,int>>, greater<>> pq;
-
-        vector<int>ways(n,0);
-        vector<long long> dist(n, LLONG_MAX);
         vector<vector<pair<int,int>>>adj(n);
-
+        vector<long long >dist(n,LLONG_MAX);
+        vector<long long >way(n,0);
         for(auto a:roads)
         {
-            adj[a[0]].push_back({a[1],a[2]});
-            adj[a[1]].push_back({a[0],a[2]});
+            int u = a[0];
+            int v = a[1];
+            int c = a[2];
+            adj[u].push_back({v,c});
+            adj[v].push_back({u,c});
         }
+        priority_queue<pair<long long ,int>,vector<pair<long long ,int>>,greater<pair<long long,int>>>pq;
         pq.push({0,0});
-        dist[0]= 0;
-        ways[0] = 1;
-
+        dist[0] = 0;
+        way[0] = 1;
+        // int minn = INT_MAX;
+        long long  ans = 0;
         while(!pq.empty())
         {
             auto a = pq.top();
             pq.pop();
-            int node = a.second;
-            long long cost = a.first;
-            if (cost > dist[node]) continue;
-            for(auto a:adj[node])
+            int u = a.second;
+            long long  t = a.first;
+            for(auto n:adj[u])
             {
-                long long tempc = cost + a.second;
-                if(tempc == dist[a.first])
+                long long  newt = t+n.second;
+                int v = n.first;
+                if(newt < dist[v])
                 {
-                    ways[a.first]=(ways[a.first] + ways[node])% MOD;
-                }
-                else
+                    dist[v] = newt;
+                    way[v] = way[u];
+                    pq.push({newt,v});
+                } 
+                else if(newt == dist[v])
                 {
-                    if(tempc < dist[a.first])
-                    {
-                        dist[a.first] = tempc;
-                        ways[a.first] = ways[node];
-                        pq.push({tempc,a.first});
-                    }
+                    way[v] = (way[v] + way[u]) % MOD;
                 }
             }
+            // cout<<endl;
         }
-        return ways[n-1] % MOD;
+        return way[n-1];
     }
 };
