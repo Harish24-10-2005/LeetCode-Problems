@@ -1,38 +1,22 @@
 class Solution {
 public:
-    int trap(vector<int>& h) {
-        int maxx = 0;
-        int ans = 0;
-        int i =0;
-        int j = 0;
-        while(j<h.size())
+    int trap(vector<int>& height) {
+        vector<int>p(height.size());
+        p[0] = height[0];
+        for(int i=1;i<height.size();i++)
         {
-            if(h[j] >= maxx)
-            {
-                while(i<j)
-                {
-                    ans+=(maxx - h[i]);
-                    i++;
-                }
-                maxx = h[j];
-            }
-            j++;
+            p[i] = max(p[i-1] , height[i]);
         }
-        i = h.size()-1;
-        j = h.size()-1;
-        maxx = 0;
-        while(j>=0)
+        vector<int>s(height.size());
+        s[height.size()-1] = height[height.size()-1];
+        for(int i=height.size()-2;i>=0;i--)
         {
-            if(h[j] >= maxx)
-            {
-                while(i>j)
-                {
-                    ans+=(maxx - h[i]);
-                    i--;
-                }
-                maxx = h[j];
-            }
-            j--;
+            s[i] = max(s[i+1] , height[i]);
+        }
+        int ans = 0;
+        for(int i =0;i<height.size();i++)
+        {
+            ans+=(min(p[i],s[i]) - height[i]);
         }
         return ans;
     }
