@@ -1,39 +1,25 @@
 class Solution {
-    bool is_pal(string s,int st,int end)
+private:
+    void rec(int idx,string s,vector<string>&temp,vector<vector<string>>&res)
     {
-        int i= st;
-        int j =end;
-        while(i<j){
-            if(s[i]!=s[j]) return false;
-            i++;
-            j--;
-        }
-        return true;
-    }
-    void rec(int i,string s,vector<string>&temp,vector<vector<string>>&res)
-    {
-        if(i == s.size())
+        if(idx == s.size()) res.push_back(temp);
+        for(int i=idx;i<s.size();i++)
         {
-            res.push_back(temp);
-            return;
-        }
-        string summa ;
-        for(int j=i;j<s.size();j++)
-        {
-            summa+=s[j];
-            if(is_pal(s,i,j))
+            string t = s.substr(idx,i - idx +1); 
+            string v = t;
+            reverse(t.begin(),t.end());
+            if(t == v)
             {
-                temp.push_back(summa);
-                rec(j+1,s,temp,res);
+                temp.push_back(v);
+                rec(i+1,s,temp,res);
                 temp.pop_back();
             }
         }
-
-    }
+    }   
 public:
     vector<vector<string>> partition(string s) {
-        vector<vector<string>>res;
         vector<string>temp;
+        vector<vector<string>>res;
         rec(0,s,temp,res);
         return res;
     }
