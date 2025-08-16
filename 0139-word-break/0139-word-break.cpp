@@ -1,36 +1,28 @@
 class Solution {
 private:
-    // bool rec(int i,string s,vector<string>&mpp)
-    // {
-    //     if(i>=s.size()) return true;
-    //     for(auto a:mpp)
-    //     {
-    //         // cout<<s.substr(i,a.size())<<"  -> "<<a<<endl;
-    //         if(s.size() < i+a.size()) continue;
-    //         if(s.substr(i,a.size()) == a && rec(i+a.size(),s,mpp))
-    //         {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-public:
-    bool wordBreak(string s, vector<string>& wordDict) {
-        vector<int>dp(s.size()+1,0);
-        dp[0] = 1;
-        
-        for(int i=0;i<s.size();i++)
+    bool rec(int st,int en,string s,unordered_set<string>&wordDict)
+    {
+        if(st == s.size()) return true;
+        string temp = "";
+        for(int i=st;i<en;i++)
         {
-            if(!dp[i]) continue;
-            for(auto a:wordDict)
+            temp+=s[i];
+            // cout<<temp<<endl;
+            if(wordDict.find(temp) != wordDict.end())
             {
-                int l = a.size();
-                if(i+l<=s.size() && s.substr(i,l) == a)
-                {
-                    dp[i+l] = 1;
-                }
+                if(rec(i+1,en,s,wordDict)) return true;
             }
         }
-        return dp[s.size()];
+        return false;
+    }
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string>w;
+        for(auto a:wordDict)
+        {
+            w.insert(a);
+        }
+        int n = s.size();
+        return rec(0,n,s,w);
     }
 };
