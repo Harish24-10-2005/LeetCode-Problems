@@ -5,14 +5,12 @@ public:
         int r = nums.size()-1;
         while(l<=r)
         {
-            int mid = ((r-l)/2)+l;
-            if(nums[mid] == target)
+            int mid = l+((r-l)/2);
+            cout<<nums[mid]<<endl;
+            if(nums[mid] == target) return mid;
+            if(nums[l] <= nums[mid])
             {
-                return mid;
-            }
-            if(nums[l]<=nums[mid])
-            {
-                if(nums[mid] > target && target >= nums[l])
+                if(target < nums[mid] && target >= nums[l])
                 {
                     r = mid-1;
                 }
@@ -23,7 +21,8 @@ public:
             }
             else
             {
-                if(nums[mid] < target && target <= nums[r])
+                // cout<<"here"<<endl;
+                if(target <=nums[r] && nums[mid] < target)
                 {
                     l = mid+1;
                 }
