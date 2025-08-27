@@ -1,4 +1,19 @@
 class Solution {
+private:
+    void ex(string s,int l,int r,int &st,int &maxx)
+    {
+        while(l>=0 && r<s.size() && s[l] == s[r])
+        {
+            int len = r-l+1;
+            if(len > maxx)
+            {
+                st = l;
+                maxx = len;
+            }
+            l--;
+            r++;
+        }
+    }
 public:
     string longestPalindrome(string s) {
         int n = s.size();
@@ -6,26 +21,8 @@ public:
         int maxx = 0;
         for(int i=0;i<n;i++)
         {
-            int l=i;int r = i;
-            while(l>=0 && r<n && s[l] == s[r])
-            {
-                if(maxx < r-l+1)
-                {
-                    st = l;
-                    maxx = r-l+1;
-                }
-                l--;r++;
-            }
-            l = i;r = i+1;
-            while(l>=0 && r<n && s[l] == s[r])
-            {
-                if(maxx < r-l+1)
-                {
-                    st = l;
-                    maxx = r-l+1;
-                }
-                l--;r++;
-            }
+            ex(s,i,i,st,maxx);
+            ex(s,i,i+1,st,maxx);
         }
         return s.substr(st,maxx);
     }
