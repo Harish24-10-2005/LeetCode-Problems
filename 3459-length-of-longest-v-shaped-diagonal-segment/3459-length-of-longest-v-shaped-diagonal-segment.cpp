@@ -41,7 +41,7 @@ public:
                         {
                             ans = max(ans,1 + rec(nx,ny,d,true,n,m,-1,grid,dx,dy,dir,dp));
                         }
-                        cout<<"==========================="<<endl;
+                        // cout<<"==========================="<<endl;
                     }
                 }
             }
