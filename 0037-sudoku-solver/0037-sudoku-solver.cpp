@@ -1,57 +1,42 @@
 class Solution {
 private:
-    bool isval(int r,int c,int n,char ch,vector<vector<char>>&board)
-    {
-        int dr = 0;
-        while(dr <n)
+    bool isvalid(int r,int c,char ch,vector<vector<char>>&g)
+    {   
+        for(int i=0;i<9;i++)
         {
-            if(board[dr][c] == ch) return false;
-            dr++;
+            if(g[i][c] == ch) return false;
+            if(g[r][i] == ch) return false;
         }
-        int dc = 0;
-        while(dc <n)
-        {
-            if(board[r][dc] == ch) return false;
-            dc++;
-        }
-
-        int sr = (r/3) * 3;
-        int sc = (c/3) * 3;
+        int sr = r - (r%3);
+        int sc = c - (c%3);
         for(int i=sr;i<sr+3;i++)
         {
-            for(int j = sc;j<sc+3;j++)
+            for(int j=sc;j<sc+3;j++)
             {
-                if(board[i][j] == ch) return false;
+                if(g[i][j] == ch) return false;
             }
         }
-
         return true;
-
     }
-    bool rec(int idx,int n,vector<vector<char>>&board)
+    bool rec(int idx,vector<vector<char>>&grid)
     {
-        if(idx == n*n) return true;
-        int c = idx%n;
-        int r = idx/n;
-
-        if(board[r][c] != '.') return rec(idx+1,n,board);
-    
-        for(int i=1;i<=9;i++)
+        if(idx == 81) return true;
+        int r = idx/9;
+        int c = idx%9;
+        if(grid[r][c] != '.') return rec(idx+1,grid);
+        for(char ch = '1';ch<='9';ch++)
         {
-            char ch = i + '0';
-            if(isval(r,c,n,ch,board))
+            if(isvalid(r,c,ch,grid))
             {
-                board[r][c] = ch;
-                if(rec(c+1,n,board)) return true;;
-                board[r][c] = '.';
+                grid[r][c] = ch;
+                if(rec(idx+1,grid)) return true;
+                grid[r][c] = '.';
             }
         }
         return false;
-    
     }
 public:
     void solveSudoku(vector<vector<char>>& board) {
-        int n = board.size();
-        rec(0,n,board);
+        rec(0,board);
     }
 };
