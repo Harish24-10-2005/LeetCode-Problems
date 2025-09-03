@@ -7,10 +7,6 @@ public:
             if(a[0] == b[0]) return a[1]>b[1];
             return a[0]<b[0];
         });
-        for(auto a:points)
-        {
-            cout<<a[1]<<endl;
-        }
         int ans = 0;
         vector<int>col;
         for(int i=0;i<n;i++)
@@ -22,7 +18,7 @@ public:
                     bool f = true;
                     for(int c:col)
                     {
-                        if(c >= points[j][1] && c< points[i][1])
+                        if(!(points[c][1] == points[i][1] && points[c][0] == points[i][0]) && !(points[c][1] == points[j][1] && points[c][0] == points[j][0]) && (points[c][1] >= points[j][1] && points[c][1] <= points[i][1]) && (points[c][0] <= points[j][0] && points[c][0] >= points[i][0]))
                         {
                             f = false;
                             break;
@@ -30,9 +26,8 @@ public:
                     }
                     if(f)
                     {
-                        cout<<" 1st "<<points[i][0]<<" "<<points[i][1]<<" 2st "<<points[j][0]<<" "<<points[j][1]<<endl;
                         ans++;
-                        col.push_back(points[j][1]);
+                        col.push_back(j);
                     }
                 }
             }
