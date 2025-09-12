@@ -1,22 +1,19 @@
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
-        int ans = 0;
         int n = nums.size();
-        int sum = 0;
         int l = 0;
-        int i = 0;
-        while(i<n)
+        int summ = 0;
+        int ans = 0;
+        for(int i=0;i<n;i++)
         {
-            sum+=nums[i];
-            // cout<<i<<endl;
-            while(l<i && sum < i-l)
+            summ+=nums[i];
+            while(summ < i - l)
             {
-                sum-=nums[l];
+                summ-=nums[l];
                 l++;
             }
-            ans = max(ans,i-l);
-            i++;
+            ans = max(ans, i - l);
         }
         return ans;
     }
