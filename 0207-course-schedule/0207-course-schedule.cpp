@@ -1,34 +1,42 @@
 class Solution {
 private:
-    bool dfs(int node,vector<vector<int>>&adj,vector<int>&path,vector<int>&vis)
+    bool dfs(int i,vector<int>&vis,vector<int>&path,vector<vector<int>>&adj)
     {
-        path[node] = 1;
-        vis[node] = 1;
-        for(int i:adj[node])
+        vis[i] = 1;
+        path[i] = 1;
+        for(int node:adj[i])
         {
-            if(vis[i] != 1)
+            if(vis[node] == 0)
             {
-                dfs(i,adj,path,vis);
+                if(dfs(node,vis,path,adj))
+                {
+                    return true;
+                }
             }
-            if(path[i] == 1) return false;
+            if(path[node] == 1)
+            {
+                return true;
+            }
         }
-        path[node] = 0;
-        return true;
+        path[i] = 0;
+        return false;
     }
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+    bool canFinish(int numCourses, vector<vector<int>>& p) {
         vector<vector<int>>adj(numCourses);
-        for(int i=0;i<prerequisites.size();i++)
+        for(int i=0;i<p.size();i++)
         {
-            int u = prerequisites[i][0];
-            int v = prerequisites[i][1];
+            int u = p[i][0];
+            int v = p[i][1];
             adj[u].push_back(v);
         }
-        vector<int>path(numCourses);
-        vector<int>vis(numCourses);
+        vector<int>vis(numCourses),path(numCourses);
         for(int i=0;i<numCourses;i++)
         {
-            if(!dfs(i,adj,path,vis)) return false;
+            if(dfs(i,vis,path,adj))
+            {
+                return false;
+            }
         }
         return true;
     }
