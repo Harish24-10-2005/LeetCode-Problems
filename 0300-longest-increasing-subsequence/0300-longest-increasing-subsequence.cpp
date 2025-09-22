@@ -1,19 +1,32 @@
 class Solution {
+private:
+    // int rec(int i,int j,vector<int>&nums)
+    // {
+    //     if(i == nums.size()) return 0;
+    //     int t = 0;
+    //     if(nums[i] > nums[j])
+    //     {
+    //         t = 1 + rec(i+1,i,nums);
+    //     }
+    //     int nt = rec(i+1,j,nums);
+    //     return max(t,nt);
+    // }
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<int>lis;
-        for(int i:nums)
+        int n = nums.size();
+        vector<int>dp(n,1);
+        int res = 1; 
+        for(int i=0;i<n;i++)
         {
-            auto it = lower_bound(lis.begin(),lis.end(),i);
-            if(it == lis.end())
+            for(int j = 0;j<i;j++)
             {
-                lis.push_back(i);
-            }
-            else
-            {
-                *it = i;
+                if(nums[i] > nums[j])
+                {
+                    dp[i] = max(dp[i],1 + dp[j]);
+                }
+                res = max(res,dp[i]);
             }
         }
-        return lis.size();
+        return res;
     }
 };
