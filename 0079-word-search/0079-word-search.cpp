@@ -1,4 +1,3 @@
-auto init = atexit([]() { ofstream("display_runtime.txt") << "0"; });
 class Solution {
 private:
     vector<int>dx{1,0,0,-1};
