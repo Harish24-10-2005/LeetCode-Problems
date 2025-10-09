@@ -13,7 +13,7 @@ public:
                 mpp[s[l]]--;
                 l++;
             }
-            ans = max(ans,i-l+1);
+            ans = max(ans,i-l + 1);
         }
         return ans;
     }
