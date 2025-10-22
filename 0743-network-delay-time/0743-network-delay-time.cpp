@@ -1,44 +1,44 @@
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        vector<vector<pair<int,int>>>adj(n+1);
-        for(auto i:times)
+        typedef pair<int,int> pp;
+        vector<vector<pp>>adj(n+1);
+        for(auto a:times)
         {
-            adj[i[0]].push_back({i[1],i[2]});
+            int u = a[0];
+            int v = a[1];
+            int w = a[2];
+            adj[u].push_back({v,w});
         }
-        
         vector<int>dist(n+1,INT_MAX);
         dist[k] = 0;
+        priority_queue<pp,vector<pp>,greater<>>pq;
         pq.push({0,k});
-
+        int ans = 0;
         while(!pq.empty())
         {
             auto a = pq.top();
             pq.pop();
 
+            int w = a.first;
             int node = a.second;
-            int wt = a.first;
-            for(auto i:adj[node])
+            for(auto c:adj[node])
             {
-                if(wt + i.second < dist[i.first])
+                int cnode = c.first;
+                int cw = c.second;
+                if(dist[cnode] > cw + w)
                 {
-                    dist[i.first] = wt + i.second;
-                    pq.push({dist[i.first],i.first});
+                    dist[cnode] = cw + w;
+                    pq.push({cw+w,cnode});
                 }
             }
         }
-        int res = INT_MIN;
-        for(int i=1;i<dist.size();i++)
+        for(int i = 1;i<=n;i++)
         {
-            cout<<dist[i]<<endl;
-            if(dist[i] == INT_MAX)
-            {
-                return -1;
-            }
-            res = max(dist[i],res);
+            cout<<dist[i]<<" ";
+            if(dist[i] == INT_MAX) return -1;
+            ans = max(ans,dist[i]);
         }
-        return res;
+        return ans;
     }
 };
