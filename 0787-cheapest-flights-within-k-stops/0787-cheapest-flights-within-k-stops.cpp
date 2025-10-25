@@ -1,41 +1,45 @@
 class Solution {
 public:
-    int findCheapestPrice(int n,vector<vector<int>>& flights,int src,int dst,int k) {
-        vector<vector<int>> dist(n, vector<int>(k + 2, INT_MAX));
-        dist[src][k + 1] = 0;  
-
-        vector<vector<pair<int,int>>> adj(n);
-        for (auto &f : flights) {
-            adj[f[0]].push_back({f[1], f[2]});
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        vector<vector<pair<int,int>>>adj(n);
+        for(int i =0;i<flights.size();i++)
+        {
+            int u = flights[i][0];
+            int v = flights[i][1];
+            int p = flights[i][2];
+            adj[u].push_back({v,p});
         }
+        typedef pair<int,pair<int,int>> ppi;
+        priority_queue<ppi,vector<ppi>,greater<>>pq;
+        
+        vector<vector<int>>dist(n,vector<int>(k+2,INT_MAX));
+        pq.push({0,{0,src}});
+        dist[src][0] = 0;
 
-        priority_queue<pair<int, pair<int,int>>, vector<pair<int, pair<int,int>>>, greater<pair<int, pair<int,int>>>> pq;
-        pq.push({0, {src, k + 1}});
-
-        while (!pq.empty()) {
-            auto [cost, sc] = pq.top();
-            auto [node, stopsLeft] = sc;
+        while(!pq.empty())
+        {
+            auto a = pq.top();
             pq.pop();
 
-            if (cost > dist[node][stopsLeft]) 
-                continue;
-
-            if (node == dst) 
-                return cost;
-
-            if (stopsLeft == 0) 
-                continue;
-            for (auto &edge : adj[node]) {
-                int nxt     = edge.first;
-                int price   = edge.second;
-                int newCost = cost + price;
-                if (newCost < dist[nxt][stopsLeft - 1]) {
-                    dist[nxt][stopsLeft - 1] = newCost;
-                    pq.push({newCost, {nxt, stopsLeft - 1}});
+            int p = a.first;
+            int s = a.second.first;
+            int cur = a.second.second;
+            if(cur == dst)
+            {
+                return p;
+            }
+            for(auto b:adj[cur])
+            {
+                int node = b.first;
+                int np = b.second;
+                if(s <= k && dist[node][s + 1] > p + np)
+                {
+                    dist[node][s+1] = p+np;
+                    pq.push({p+np,{s+1,node}});
                 }
             }
         }
+        return -1;
 
-        return -1; 
     }
 };
