@@ -1,35 +1,36 @@
 class Solution {
+    vector<string>res;
+    unordered_set<string>has;
+    int n;
 private:
-    void rec(int i,string s,string ans,string temp,vector<string>&res,unordered_set<string>&st)
+    void rec(int i,string s,string temp,string ans)
     {
-        if(i == s.size())
+        if(i == n)
         {
-            if(st.find(temp) != st.end())
+            if(has.find(temp) != has.end())
             {
-                ans+=temp;
+                ans += temp;
                 res.push_back(ans);
             }
             return;
         }
         cout<<temp<<endl;
-        if(st.find(temp) != st.end())
+        if(has.find(temp) != has.end())
         {
-            string t="";
-            string ta = ans+temp;
-            rec(i+1,s,ta+" ",t+s[i],res,st);
-
+            string t = "";
+            t += s[i];
+            rec(i+1,s,t,ans + temp + " ");
         }
-        rec(i+1,s,ans,temp+s[i],res,st);
+        rec(i+1,s,temp + s[i],ans);
     }
 public:
     vector<string> wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string>st;
+        n = s.size();
         for(auto a:wordDict)
         {
-            st.insert(a);
+            has.insert(a);
         }
-        vector<string>res;
-        rec(0,s,"","",res,st);
+        rec(0,s,"","");
         return res;
     }
 };
