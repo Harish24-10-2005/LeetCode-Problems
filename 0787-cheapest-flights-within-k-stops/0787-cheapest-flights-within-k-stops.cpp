@@ -10,36 +10,34 @@ public:
             adj[u].push_back({v,p});
         }
         typedef pair<int,pair<int,int>> ppi;
-        priority_queue<ppi,vector<ppi>,greater<>>pq;
-        
-        vector<vector<int>>dist(n,vector<int>(k+2,INT_MAX));
+        queue<ppi>pq;
+
+        vector<int>dist(n,INT_MAX);
         pq.push({0,{0,src}});
-        dist[src][0] = 0;
+        dist[src] = 0;
 
         while(!pq.empty())
         {
-            auto a = pq.top();
+            auto a = pq.front();
             pq.pop();
 
             int p = a.first;
             int s = a.second.first;
             int cur = a.second.second;
-            if(cur == dst)
-            {
-                return p;
-            }
+
+            if(s > k) continue;
             for(auto b:adj[cur])
             {
                 int node = b.first;
                 int np = b.second;
-                if(s <= k && dist[node][s + 1] > p + np)
+                if(s <= k && dist[node] > p + np)
                 {
-                    dist[node][s+1] = p+np;
+                    dist[node] = p+np;
                     pq.push({p+np,{s+1,node}});
                 }
             }
         }
-        return -1;
+        return dist[dst] == INT_MAX ? -1 : dist[dst];
 
     }
 };
