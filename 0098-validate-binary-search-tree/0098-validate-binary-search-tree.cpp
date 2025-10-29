@@ -9,17 +9,20 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+ #define LL long long
 class Solution {
-    private:
-    bool dfs(TreeNode* root,long long maxx,long long minn)
+private:
+    bool check(TreeNode* root, LL minn,LL maxx)
     {
         if(!root) return true;
-        if(root->val <= minn || root->val >= maxx) return false;
-
-        return dfs(root->left,root->val,minn) && dfs(root->right,maxx,root->val);
+        LL val = root->val;
+        if(!(val > minn && val < maxx))  return false;
+        return check(root->left,minn,val) &&
+               check(root->right,val,maxx);
     }
 public:
     bool isValidBST(TreeNode* root) {
-        return dfs(root,LLONG_MAX,LLONG_MIN);
+        return check(root,LLONG_MIN,LLONG_MAX);
     }
 };
+
