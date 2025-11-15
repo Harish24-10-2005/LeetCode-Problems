@@ -1,5 +1,6 @@
 class Solution {
 private:
+    // vector<vector<int>>dp;
     bool eval(string& e,int st, int end)
     {
         if (st > end) return false;
@@ -7,11 +8,11 @@ private:
         {
             return e[st] == 't';
         }
-        for(int i=st;i<=end;i++)
-        {
-            cout<<e[i];
-        }
-        cout<<endl;
+        // for(int i=st;i<=end;i++)
+        // {
+        //     cout<<e[i];
+        // }
+        // cout<<endl;
         // cout<<st<<" "<<end;
         char ch = e[st];
         bool res = ch == '&' ? true: false;
@@ -48,6 +49,7 @@ private:
     }
 public:
     bool parseBoolExpr(string e) {
+    //    dp.assign(e.size(),vector<int>(e.size(),-1));
        return eval(e,0,e.size()-1);
     }
 };
