@@ -6,7 +6,7 @@ public:
         if(m < n) return findMedianSortedArrays(nums2,nums1);
 
         int k = (n+m+1)/2;
-        int l = max(0,n-k);
+        int l = max(0,k-m);
         int r = min(k,n);
         while(l<=r)
         {
