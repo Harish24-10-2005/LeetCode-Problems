@@ -1,41 +1,45 @@
 class Solution {
-    vector<int>sub1,sub2;
-private:
-    void rec(int i,int r,vector<int>&nums,int summ,bool sub)
-    {
-        if(i == r) 
-        {
-            if(sub) sub1.push_back(summ);
-            else sub2.push_back(summ);
+private:    
+    int n;
+    vector<int>arr1,arr2;
+    void rec(int l,int r,int summ,vector<int>&nums,bool f){
+        if(l == r){
+            if(f)arr1.push_back(summ);
+            else arr2.push_back(summ);
             return;
         }
-        rec(i+1,r,nums,summ+nums[i],sub);
-        rec(i+1,r,nums,summ,sub);
+        rec(l+1,r,summ,nums,f);
+        rec(l+1,r,summ+nums[l],nums,f);
     }
 public:
     int minAbsDifference(vector<int>& nums, int goal) {
-        int n = nums.size();
-        int mid = n/2;
-        rec(0,mid+1,nums,0,true);
-        rec(mid+1,n,nums,0,false);
-        sort(sub2.begin(),sub2.end());
+        n = nums.size();
+        int h = n/2;
+        rec(0,h,0,nums,true);
+        // cout<<h<<" "<<n<<endl;
+        rec(h,n,0,nums,false);
+        sort(arr1.begin(),arr1.end());
         int ans = INT_MAX;
-        for(auto a:sub1)
-        {
-            int tar = goal - a;
-            int idx = lower_bound(sub2.begin(),sub2.end(),tar) - sub2.begin();
-            int b = INT_MAX;
-            int c = INT_MAX;
-            if(idx < sub2.size()) b = sub2[idx];
-            if(idx -1 >= 0) c = sub2[idx-1];
-            if(b != INT_MAX)
-            {
-                ans = min(ans,abs(goal - (a + b)));
+        // for(auto a:arr1) cout<<a<<" ";
+        // cout<<endl;
+
+        // for(auto a:arr2) cout<<a<<" ";
+
+        for(int i=0;i<arr2.size();i++){
+            int tar = goal - arr2[i];
+            int idx = lower_bound(arr1.begin(),arr1.end(),tar) - arr1.begin();
+            int need = INT_MAX;
+
+            if(idx < arr1.size()){
+                need = arr1[idx];
+                ans = min(ans,abs(goal - (arr2[i] + need)));
             }
-            if(c != INT_MAX)
-            {
-                ans = min(ans,abs(goal - (a + c)));
+
+            if(idx -1 >=0){
+                need = arr1[idx-1];
+                ans = min(ans,abs(goal - (arr2[i] + need)));
             }
+            // cout<<arr2[i] <<" "<<need<<endl;
         }
         return ans;
     }
