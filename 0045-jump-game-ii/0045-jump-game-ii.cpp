@@ -2,15 +2,15 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
         int cnt = 0;
-        int far = 0;
-        int cur = 0;
+        int maxd = 0;
+        int c = 0;
         for(int i=0;i<nums.size()-1;i++)
         {
-            far = max(far,i+nums[i]);
-            if(i == cur)
+            maxd = max(maxd,i+nums[i]);
+            if(i == c)
             {
                 cnt++;
-                cur = far;
+                c = maxd;
             }
         }
         return cnt;
