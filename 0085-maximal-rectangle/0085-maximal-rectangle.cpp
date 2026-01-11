@@ -1,62 +1,55 @@
 class Solution {
 private:
-    int findmax(vector<int>&h)
-    {
-        int n = h.size();
-        vector<int>p(n,-1);
-        vector<int>s(n,n);
+    int n,m;
+    vector<int>h;
+    int findMax(){
+        vector<int>pre(m,-1),suf(m,m);
         stack<int>st;
-        for(int i=0;i<n;i++)
-        {
-            while(!st.empty() && h[i]<=h[st.top()])
-            {
+        for(int i= 0;i<m;i++){
+            while(!st.empty() && h[st.top()] >= h[i]){
                 st.pop();
             }
-            if(!st.empty()) p[i] = st.top();
+            if(!st.empty()) pre[i] = st.top();
             st.push(i);
         }
         while(!st.empty()) st.pop();
-        for(int i=n-1;i>=0;i--)
-        {
-            while(!st.empty() && h[i]<=h[st.top()])
-            {
+        for(int i= m-1;i>=0;i--){
+            while(!st.empty() && h[st.top()] >= h[i]){
                 st.pop();
             }
-            if(!st.empty()) s[i] = st.top();
+            if(!st.empty()) suf[i] = st.top();
             st.push(i);
         }
-        int ans = 0;
-        for(int i=0;i<n;i++)
-        {
-            int left = i-p[i]-1;
-            // cout<<"left->"<<left
-            int ryt = s[i] - i;
-            int t = (left + ryt) * h[i];
-            ans = max(ans,t);
+        // for(int i:suf){
+        //     cout<<i<<" ";
+        // }
+        // cout<<endl;
+        int rec = 0;
+        for(int i=0;i<m;i++){
+            int lft = i - pre[i] - 1;
+            int ryt = suf[i] - i;
+            // cout<<"{"<<h[i]<<" "<<lft<<" "<<ryt<<"}";
+            rec = max(rec,h[i] * (lft + ryt));
         }
-        cout<<ans<<endl;
-        return ans;
+        cout<<endl;
+        return rec;
     }
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
-        int n=matrix.size();
-        int m = matrix[0].size();
-        int res= 0;
-        vector<int>h(m,0);
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(matrix[i][j] - '0' == 0)
-                {
-                    h[j] = 0;
-                }
-                else h[j]+=1;
+        n = matrix.size();
+        m = matrix[0].size();
+        int ans = 0;
+        h.assign(m,0);
+        for(int i=0;i<n;i++){
+            // for(int i:h) cout<<i<<" ";
+            // cout<<endl;
+            for(int j =0;j<m;j++){
+                if(matrix[i][j] == '1') h[j]+=1;
+                else h[j] = 0;
             }
-            for(auto a:h)cout<<a<<" ";
-            cout<<endl;
-            res = max(res,findmax(h));
-        }   
-        return res;
+            int height = findMax();
+            ans = max(ans,height);
+        }
+        return ans;
     }
 };
