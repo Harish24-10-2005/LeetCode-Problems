@@ -14,7 +14,7 @@ public:
         {
             if(ratings[i] > ratings[i+1])
             {
-                c[i] = max(c[i+1]+1,c[i]);
+                c[i] = c[i+1]+1;
             }
         }
         return accumulate(c.begin(),c.end(),0);
