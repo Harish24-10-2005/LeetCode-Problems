@@ -1,0 +1,9 @@
+# Write your MySQL query statement below
+SELECT DISTINCT NUM AS ConsecutiveNums 
+FROM (
+    SELECT NUM,
+    LAG(NUM,1) OVER (ORDER BY ID) AS PRE1,
+    LAG(NUM,2) OVER (ORDER BY ID) AS PRE2
+    FROM LOGS
+) AS L
+WHERE NUM = PRE1 AND NUM = PRE2
