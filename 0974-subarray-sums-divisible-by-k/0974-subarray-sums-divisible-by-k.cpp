@@ -9,7 +9,10 @@ public:
         for(int i=0;i<n;i++)
         {
             summ+=nums[i];
-            int r = (summ%k+k)%k;
+            int r = summ%k;
+            if(r < 0){
+                r+=k;
+            }
             ans+=mpp[r];
             mpp[r]++;
         }
