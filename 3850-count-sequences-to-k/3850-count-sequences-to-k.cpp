@@ -3,11 +3,11 @@ private:
     long long k,n;
     unordered_map<string,long long>dp;
     int rec(int i,long long mul,long long div,vector<int>&nums){
-        long long g = gcd(mul, div);
-        mul /= g;
-        div /= g;
+        long long g = gcd(mul,div);
+        mul/=g;
+        div/=g;
         if(i == n){
-            if(div == 1 && mul == k) return 1;
+            if((mul % div) == 0 && (mul/div) == k) return 1;
             return 0;
         }
         string key = to_string(i)+"#"+ to_string(mul)+"#"+ to_string(div);
