@@ -29,4 +29,8 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1545-find-kth-bit-in-nth-binary-string](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1545-find-kth-bit-in-nth-binary-string/) | Medium |
+## Database
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [1661-average-time-of-process-per-machine](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1661-average-time-of-process-per-machine/) | Easy |
 <!---LeetCode Topics End-->
