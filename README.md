@@ -32,5 +32,6 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 ## Database
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [1280-students-and-examinations](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1280-students-and-examinations/) | Easy |
 | [1661-average-time-of-process-per-machine](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1661-average-time-of-process-per-machine/) | Easy |
 <!---LeetCode Topics End-->
