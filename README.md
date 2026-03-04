@@ -7,6 +7,7 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1536-minimum-swaps-to-arrange-a-binary-grid](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1536-minimum-swaps-to-arrange-a-binary-grid/) | Medium |
+| [1582-special-positions-in-a-binary-matrix](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1582-special-positions-in-a-binary-matrix/) | Easy |
 ## Greedy
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -15,6 +16,7 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1536-minimum-swaps-to-arrange-a-binary-grid](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1536-minimum-swaps-to-arrange-a-binary-grid/) | Medium |
+| [1582-special-positions-in-a-binary-matrix](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1582-special-positions-in-a-binary-matrix/) | Easy |
 ## String
 | Problem Name | Difficulty |
 | ------- | ------- |
