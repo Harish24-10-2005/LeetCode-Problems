@@ -40,6 +40,7 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | [1280-students-and-examinations](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1280-students-and-examinations/) | Easy |
 | [1661-average-time-of-process-per-machine](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1661-average-time-of-process-per-machine/) | Easy |
 | [1741-find-total-time-spent-by-each-employee](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1741-find-total-time-spent-by-each-employee/) | Easy |
+| [3220-odd-and-even-transactions](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3220-odd-and-even-transactions/) | Medium |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
