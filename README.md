@@ -6,6 +6,7 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 ## Array
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0849-maximize-distance-to-closest-person](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/0849-maximize-distance-to-closest-person/) | Medium |
 | [1536-minimum-swaps-to-arrange-a-binary-grid](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1536-minimum-swaps-to-arrange-a-binary-grid/) | Medium |
 | [1582-special-positions-in-a-binary-matrix](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1582-special-positions-in-a-binary-matrix/) | Easy |
 | [1980-find-unique-binary-string](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1980-find-unique-binary-string/) | Medium |
