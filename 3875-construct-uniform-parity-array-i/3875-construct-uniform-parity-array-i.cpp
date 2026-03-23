@@ -13,11 +13,11 @@ public:
         for(int i:nums1){
             if(f){
                 if(i%2 != 0){
-                    if((i - o) %2 != 0) return false;
+                    // if((i - o) %2 != 0) return false;
                 }
             }else{
                 if(i%2 == 0){
-                    if((i - o) %2 == 0) return false;
+                    // if((i - o) %2 == 0) return false;
                 }
             }
         }
