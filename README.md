@@ -16,12 +16,14 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | [3070-count-submatrices-with-top-left-element-and-sum-less-than-k](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3070-count-submatrices-with-top-left-element-and-sum-less-than-k/) | Medium |
 | [3212-count-submatrices-with-equal-frequency-of-x-and-y](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3212-count-submatrices-with-equal-frequency-of-x-and-y/) | Medium |
 | [3296-minimum-number-of-seconds-to-make-mountain-height-zero](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3296-minimum-number-of-seconds-to-make-mountain-height-zero/) | Medium |
+| [3635-earliest-finish-time-for-land-and-water-rides-ii](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3635-earliest-finish-time-for-land-and-water-rides-ii/) | Medium |
 ## Greedy
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [1536-minimum-swaps-to-arrange-a-binary-grid](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1536-minimum-swaps-to-arrange-a-binary-grid/) | Medium |
 | [1727-largest-submatrix-with-rearrangements](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1727-largest-submatrix-with-rearrangements/) | Medium |
 | [3296-minimum-number-of-seconds-to-make-mountain-height-zero](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3296-minimum-number-of-seconds-to-make-mountain-height-zero/) | Medium |
+| [3635-earliest-finish-time-for-land-and-water-rides-ii](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3635-earliest-finish-time-for-land-and-water-rides-ii/) | Medium |
 ## Matrix
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -82,6 +84,7 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [3296-minimum-number-of-seconds-to-make-mountain-height-zero](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3296-minimum-number-of-seconds-to-make-mountain-height-zero/) | Medium |
+| [3635-earliest-finish-time-for-land-and-water-rides-ii](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3635-earliest-finish-time-for-land-and-water-rides-ii/) | Medium |
 ## Heap (Priority Queue)
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -92,6 +95,7 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | ------- | ------- |
 | [1727-largest-submatrix-with-rearrangements](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1727-largest-submatrix-with-rearrangements/) | Medium |
 | [1878-get-biggest-three-rhombus-sums-in-a-grid](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1878-get-biggest-three-rhombus-sums-in-a-grid/) | Medium |
+| [3635-earliest-finish-time-for-land-and-water-rides-ii](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3635-earliest-finish-time-for-land-and-water-rides-ii/) | Medium |
 ## Prefix Sum
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -103,4 +107,8 @@ This repository serves as a collection of my solutions to various LeetCode Data 
 | ------- | ------- |
 | [0788-rotated-digits](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/0788-rotated-digits/) | Medium |
 | [1594-maximum-non-negative-product-in-a-matrix](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/1594-maximum-non-negative-product-in-a-matrix/) | Medium |
+## Two Pointers
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3635-earliest-finish-time-for-land-and-water-rides-ii](https://github.com/Harish24-10-2005/LeetCode-Problems/tree/main/3635-earliest-finish-time-for-land-and-water-rides-ii/) | Medium |
 <!---LeetCode Topics End-->
